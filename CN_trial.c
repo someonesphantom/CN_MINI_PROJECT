@@ -127,51 +127,52 @@ long tobinary(int dec){
 
 void lastAdd(char *host_ip, int CIDR)
 {
-   //char subnet[100],temp[100],subnetmask[100],temp1[100];
-   //  int num,dec,i =0,j=0,k=0;
-   // for(int i = 0;i < 32;i++){
-   //    if(i==7||i==15||i==23){
-   //       subnet[i] = '.';
+   char subnet[100],temp[100],subnetmask[100],temp1[100];
+    int num,dec,i =0,j=0,k=0;
+   for(int i = 0;i < 32;i++){
+      if(i==7||i==15||i==23){
+         subnet[i] = '.';
          
-   //    }
-   //    else if(i < CIDR){
-   //       subnet[i]='1';
-   //    }
-   //    else{
-   //       subnet[i]='0';
-   //    }
-   // }
-   // while(true){
-   //    temp[i]=subnet[i];
-   //    if(subnet[i]=='.'){
-   //       num = atoi(temp);
-   //       dec  = binaryTodecimal(num);
-   //       sprintf(temp1,"%d",dec);
-   //       strcat(subnetmask,temp1);
-   //       //subnetmask[j]=temp1;
-   //       //j++;
-   //       //subnetmask[j]='.';
-   //       strcat(subnetmask,".");
-   //       k++;
-   //       num =0;
-   //       dec=0;
-   //    }
-   //    else if(k==3){
-   //      num = atoi(temp);
-   //      dec  = binaryTodecimal(num);
-   //      //change to string from number
-   //      sprintf(temp1,"%d",dec);
-   //      //subnetmask[j]=temp1;
-   //      strcat(subnetmask,temp1);
-   //      num =0;
-   //      dec=0;
-   //    }
-   //    else if(subnet[i] == '\0')
-   //      break;
-   //    i++;
+      }
+      else if(i < CIDR){
+         subnet[i]='1';
+      }
+      else{
+         subnet[i]='0';
+      }
+   }
+   while(true){
+      temp[i]=subnet[i];
+      if(subnet[i]=='.'){
+         num = atoi(temp);
+         dec  = binaryTodecimal(num);
+         sprintf(temp1,"%d",dec);
+         strcat(subnetmask,temp1);
+         //subnetmask[j]=temp1;
+         //j++;
+         //subnetmask[j]='.';
+         strcat(subnetmask,".");
+         k++;
+         num =0;
+         dec=0;
+      }
+      else if(k==2){
+        num = atoi(temp);
+        dec  = binaryTodecimal(num);
+        //change to string from number
+        sprintf(temp1,"%d",dec);
+        //subnetmask[j]=temp1;
+        strcat(subnetmask,temp1);
+        num =0;
+        dec=0;
+      }
+      else if(subnet[i] == '\0')
+        break;
+      i++;
 
-   // }
-   char *netmask ="255.255.255.192" ;
+   }
+   printf("%s\n",subnetmask );
+   char *netmask =subnetmask ;
    //inet_ntop(AF_INET,&);
    struct in_addr host, mask, broadcast, network,next_network,next_broadcast;
    char broadcast_address[INET_ADDRSTRLEN];
@@ -225,11 +226,11 @@ void lastAdd(char *host_ip, int CIDR)
 
 
 int main() {
-   char ip1[15] ;
-   char subnet[15] ;
-   scanf("%s",ip1);
-   printf("Enter subnet");
-   scanf("%s",subnet);
+   char ip1[] = "72.20.10.0";
+   char subnet[] = "255.255.255.192";
+   //scanf("%s",ip1);
+   //printf("Enter subnet");
+   //scanf("%s",subnet);
    char temp[100],temp1[100];
    //char str[] = "192.226.12.11";
    char ipClass;
