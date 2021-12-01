@@ -225,11 +225,11 @@ void lastAdd(char *host_ip, int CIDR)
 
 
 int main() {
-   char ip1[] = "72.20.10.0";
-   char subnet[] = "255.255.255.192";
-   char ip2[] = "172.16.253.1";
-   char ip3[] = "192.800.100.1";
-   char ip4[] = "125.512.100.abc";
+   char ip1[15] ;
+   char subnet[15] ;
+   scanf("%s",ip1);
+   printf("Enter subnet");
+   scanf("%s",subnet);
    char temp[100],temp1[100];
    //char str[] = "192.226.12.11";
    char ipClass;
@@ -239,15 +239,15 @@ int main() {
    if(isValidIpAddress(temp)){
       status = ping(temp1);
       if(status){
-       printf("Could ping %s successfully, status %d\n", ip1, status);
-      } else {
-        printf("Machine not reachable, status %d\n", status);
-      }
-      lastAdd(temp1,26);
-      ipClass = findClass(ip1);
-      printf("Given IP address(%s) belongs to Class %c\n",ip1,ipClass);
-      
-   } 
-   else
-      printf("Not valid\n");
+        printf("Could ping %s successfully, status %d\n", ip1, status);
+     } else {
+       printf("Machine not reachable, status %d\n", status);
+    }
+    lastAdd(temp1,26);
+    ipClass = findClass(ip1);
+    printf("Given IP address(%s) belongs to Class %c\n",ip1,ipClass);
+
+ } 
+ else
+   printf("Not valid\n");
 }
