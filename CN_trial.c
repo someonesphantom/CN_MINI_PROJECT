@@ -130,7 +130,7 @@ void lastAdd(char *host_ip, int CIDR)
    char subnet[100],temp[100],subnetmask[100],temp1[100];
     int num,dec,i =0,j=0,k=0;
    for(int i = 0;i < 32;i++){
-      if(i==7||i==15||i==23){
+      if(i==8||i==16||i==24){
          subnet[i] = '.';
          
       }
@@ -141,8 +141,9 @@ void lastAdd(char *host_ip, int CIDR)
          subnet[i]='0';
       }
    }
+   printf("%s\n",subnet);
    while(true){
-      temp[i]=subnet[i];
+      temp[j]=subnet[i];
       if(subnet[i]=='.'){
          num = atoi(temp);
          dec  = binaryTodecimal(num);
@@ -153,8 +154,9 @@ void lastAdd(char *host_ip, int CIDR)
          //subnetmask[j]='.';
          strcat(subnetmask,".");
          k++;
-         num =0;
+         num=0;
          dec=0;
+         j=0;
       }
       else if(k==2){
         num = atoi(temp);
@@ -165,10 +167,13 @@ void lastAdd(char *host_ip, int CIDR)
         strcat(subnetmask,temp1);
         num =0;
         dec=0;
+        j=0;
       }
       else if(subnet[i] == '\0')
+
         break;
       i++;
+      j++;
 
    }
    printf("%s\n",subnetmask );
