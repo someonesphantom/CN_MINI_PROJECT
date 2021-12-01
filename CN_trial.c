@@ -127,14 +127,13 @@ long tobinary(int dec){
 
 void lastAdd(char *host_ip, int CIDR)
 {
-   char subnet[100],temp[100],subnetmask[100],temp1[100];
-    int num,dec,i =0,j=0,k=0;
-   for(int i = 0;i < 32;i++){
-      if(i==8||i==16||i==24){
+   char subnet[200],temp[1000],subnetmask[200],temp1[1000];
+    int num=0,dec=0,i =0,j=0,k=0;
+   for(i = 0;i < 35;i++){
+      if(i==8||i==17||i==26){
          subnet[i] = '.';
-         
       }
-      else if(i < CIDR){
+      else if(i < CIDR+3){
          subnet[i]='1';
       }
       else{
@@ -142,6 +141,7 @@ void lastAdd(char *host_ip, int CIDR)
       }
    }
    printf("%s\n",subnet);
+
    while(true){
       temp[j]=subnet[i];
       if(subnet[i]=='.'){
@@ -165,7 +165,7 @@ void lastAdd(char *host_ip, int CIDR)
         sprintf(temp1,"%d",dec);
         //subnetmask[j]=temp1;
         strcat(subnetmask,temp1);
-        num =0;
+        num=0;
         dec=0;
         j=0;
       }
@@ -177,7 +177,7 @@ void lastAdd(char *host_ip, int CIDR)
 
    }
    printf("%s\n",subnetmask );
-   char *netmask =subnetmask ;
+   char *netmask = subnetmask ;
    //inet_ntop(AF_INET,&);
    struct in_addr host, mask, broadcast, network,next_network,next_broadcast;
    char broadcast_address[INET_ADDRSTRLEN];
@@ -220,10 +220,6 @@ void lastAdd(char *host_ip, int CIDR)
 
       //inet_ntop(AF_INET, &broadcast.s_addr+mask.s_addr, broadcast_address, INET_ADDRSTRLEN);
       //printf("Broadcast address of %s is %s\n",host_ip, broadcast_address);
-    }
-        
-    else {
-        fprintf(stderr, "Failed converting number to string\n");
     }
 
 }
