@@ -125,7 +125,7 @@ long tobinary(int dec){
 //   }
 // }
 
-void lastAdd(char *host_ip, int CIDR)
+void ipAddress_LF(char *host_ip, int CIDR)
 {
    char subnet[200],temp[1000],subnetmask[200],temp1[1000];
     int num=0,dec=0,i =0,j=0,k=0;
@@ -142,41 +142,38 @@ void lastAdd(char *host_ip, int CIDR)
    }
    printf("%s\n",subnet);
 
-   while(true){
+  for(int l=0;l<0;l++){
       temp[j]=subnet[i];
       if(subnet[i]=='.'){
          num = atoi(temp);
          dec  = binaryTodecimal(num);
          sprintf(temp1,"%d",dec);
          strcat(subnetmask,temp1);
-         //subnetmask[j]=temp1;
-         //j++;
-         //subnetmask[j]='.';
          strcat(subnetmask,".");
+         printf("hi %s\n",subnetmask );
          k++;
          num=0;
          dec=0;
          j=0;
       }
-      else if(k==2){
+      if(k==2){
         num = atoi(temp);
         dec  = binaryTodecimal(num);
         //change to string from number
         sprintf(temp1,"%d",dec);
-        //subnetmask[j]=temp1;
         strcat(subnetmask,temp1);
+        printf("%s\n",subnetmask );
         num=0;
         dec=0;
         j=0;
       }
       else if(subnet[i] == '\0')
-
         break;
       i++;
       j++;
 
    }
-   printf("%s\n",subnetmask );
+   printf("hi %s\n",subnetmask );
    char *netmask = subnetmask ;
    //inet_ntop(AF_INET,&);
    struct in_addr host, mask, broadcast, network,next_network,next_broadcast;
@@ -245,7 +242,7 @@ int main() {
      } else {
        printf("Machine not reachable, status %d\n", status);
     }
-    lastAdd(temp1,26);
+    ipAddress_LF(temp1,26);
     ipClass = findClass(ip1);
     printf("Given IP address(%s) belongs to Class %c\n",ip1,ipClass);
 
